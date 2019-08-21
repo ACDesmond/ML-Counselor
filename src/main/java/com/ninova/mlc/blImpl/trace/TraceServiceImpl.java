@@ -90,7 +90,6 @@ public class TraceServiceImpl implements TraceService {
             float nowPrice=(float)getRequest2(code).get("newnet");
             fundTotalBenefit=principal-num*nowPrice;
             return ResponseVO.buildSuccess(fundTotalBenefit);
-            
         }
         catch (Exception e){
             e.printStackTrace();
