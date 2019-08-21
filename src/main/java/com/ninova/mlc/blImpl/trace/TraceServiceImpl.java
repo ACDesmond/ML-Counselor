@@ -66,7 +66,12 @@ public class TraceServiceImpl implements TraceService {
     @Override
     public ResponseVO getfundDailyBenefit(int userId,String code){
         try{
-            double fundDailyBenefit=0.0;
+            double fundDailyBenefit;
+            PurchaseRecord fund=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
+            float num=fund.getNumber();
+            float nowPrice=(float)getRequest(code).get("nowPri");
+            double principle=fund.getPrincipal();
+            fundDailyBenefit=nowPrice*num-principle;
             return ResponseVO.buildSuccess(fundDailyBenefit);
         }
         catch (Exception e){
@@ -78,7 +83,12 @@ public class TraceServiceImpl implements TraceService {
     @Override
     public ResponseVO getfundTotalBenefit(int userId,String code){
         try{
-            double fundTotalBenefit=0.0;
+            double fundTotalBenefit;
+            PurchaseRecord fund=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
+            float num=fund.getNumber();
+            float nowPrice=(float)getRequest(code).get("nowPri");
+            double principle=fund.getPrincipal();
+            fundTotalBenefit=nowPrice*num-principle;
             return ResponseVO.buildSuccess(fundTotalBenefit);
         }
         catch (Exception e){
