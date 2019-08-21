@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 @Service
@@ -148,6 +149,8 @@ public class TraceServiceImpl implements TraceService {
 
     //申请的KEY
     public static final String APPKEY ="a04675114c99983de7e893dbaca4896c";
+    //债券KEY
+    public static final String APPKEY_2 ="da1fc68aff9b013397d0356b5854b8a4";
 
     //沪深股市
     public static JSONObject getRequest(String code){
@@ -179,51 +182,44 @@ public class TraceServiceImpl implements TraceService {
 
     //请求基金数据
     public static JSONObject getRequest2(String code) {
-        //接口地址
-        String requestUrl = "http://fundgz.1234567.com.cn/js/"+code+".js?rt=1463558676006";
-        Map params = new HashMap();
-        String string = httpRequest(requestUrl,params);
-        string=string.substring(8,string.length()-2);
-        JSONObject object = JSONObject.fromObject(string);
-        System.out.println(object);
-        return object;
+        return getRequestall(code,"http://web.juhe.cn:8080/fund/netdata/all");
     }
 
-    private static String httpRequest(String requestUrl,Map params) {
-        //buffer用于接受返回的字符
-        StringBuffer buffer = new StringBuffer();
+    //请求债券数据
+    public static JSONObject getRequest3(String code){
+        return getRequestall(code,"http://web.juhe.cn:8080/fund/netdata/bond");
+    }
+
+    public static JSONObject getRequestall(String code,String oldUrl){
+        String result =null;
+        String url =oldUrl;//请求接口地址
+        Map params = new HashMap();//请求参数
+        params.put("key",APPKEY_2);//APPKEY值
+
         try {
-            //建立URL，把请求地址给补全，其中urlencode（）方法用于把params里的参数给取出来
-            URL url = new URL(requestUrl+"?"+urlencode(params));
-            //打开http连接
-            HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();
-            httpUrlConn.setDoInput(true);
-            httpUrlConn.setRequestMethod("GET");
-            httpUrlConn.connect();
+            result =net(url, params, "GET");
+            JSONObject object = JSONObject.fromObject(result);
+            if(object.getInt("error_code")==0){
+                JSONArray ja=JSONArray.fromObject(object.get("result"));
+                JSONObject ob=ja.getJSONObject(0);
+                System.out.println(ob);
+                Iterator iter=ob.keys();
+                while (iter.hasNext()){
+                    String key=(String)iter.next();
+                    JSONObject value=ob.getJSONObject(key);
+                    if (((String)value.get("code")).equals(code)){
+                        return value;
+                    }
+                }
 
-            //获得输入
-            InputStream inputStream = httpUrlConn.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            //将bufferReader的值给放到buffer里
-            String str = null;
-            while ((str = bufferedReader.readLine()) != null) {
-                buffer.append(str);
+            }else{
+                System.out.println(object.get("error_code")+":"+object.get("reason"));
+                return null;
             }
-            //关闭bufferReader和输入流
-            bufferedReader.close();
-            inputStreamReader.close();
-            inputStream.close();
-            inputStream = null;
-            //断开连接
-            httpUrlConn.disconnect();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //返回字符串
-        return buffer.toString();
+        return null;
     }
 
     public static String net(String strUrl, Map params,String method) throws Exception {
