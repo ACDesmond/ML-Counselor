@@ -54,8 +54,8 @@ public class TraceServiceImpl implements TraceService {
             PurchaseRecord stock=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
             float num=stock.getNumber();
             float nowPrice=(float)getRequest(code).get("nowPri");
-            double principle=stock.getPrincipal();
-            stockTotalBenefit=nowPrice*num-principle;
+            double principal=stock.getPrincipal();
+            stockTotalBenefit=nowPrice*num-principal;
             return ResponseVO.buildSuccess(stockTotalBenefit);
         }
         catch (Exception e){
@@ -70,9 +70,8 @@ public class TraceServiceImpl implements TraceService {
             double fundDailyBenefit;
             PurchaseRecord fund=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
             float num=fund.getNumber();
-            float nowPrice=(float)getRequest(code).get("nowPri");
-            double principle=fund.getPrincipal();
-            fundDailyBenefit=nowPrice*num-principle;
+            float dayincrease=(float)getRequest2(code).get("dayincrease");
+            fundDailyBenefit=dayincrease*num;
             return ResponseVO.buildSuccess(fundDailyBenefit);
         }
         catch (Exception e){
@@ -87,9 +86,9 @@ public class TraceServiceImpl implements TraceService {
             double fundTotalBenefit;
             PurchaseRecord fund=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
             float num=fund.getNumber();
-            float nowPrice=(float)getRequest(code).get("nowPri");
-            double principle=fund.getPrincipal();
-            fundTotalBenefit=nowPrice*num-principle;
+            double principal=fund.getPrincipal();
+            float nowPrice=(float)getRequest2(code).get("newnet");
+            fundTotalBenefit=principal-num*nowPrice;
             return ResponseVO.buildSuccess(fundTotalBenefit);
         }
         catch (Exception e){
@@ -101,7 +100,11 @@ public class TraceServiceImpl implements TraceService {
     @Override
     public ResponseVO getbondDailyBenefit(int userId,String code){
         try{
-            double bondDailyBenefit=0.0;
+            double bondDailyBenefit;
+            PurchaseRecord bond=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
+            float num=bond.getNumber();
+            float dayincrease=(float)getRequest3(code).get("dayincrease");
+            bondDailyBenefit=dayincrease*num;
             return ResponseVO.buildSuccess(bondDailyBenefit);
         }
         catch (Exception e){
@@ -113,7 +116,12 @@ public class TraceServiceImpl implements TraceService {
     @Override
     public ResponseVO getbondTotalBenefit(int userId,String code){
         try{
-            double bondTotalBenefit=0.0;
+            double bondTotalBenefit;
+            PurchaseRecord bond=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
+            float num=bond.getNumber();
+            double principal=bond.getPrincipal();
+            float nowPrice=(float)getRequest3(code).get("newnet");
+            bondTotalBenefit=principal-num*nowPrice;
             return ResponseVO.buildSuccess(bondTotalBenefit);
         }
         catch (Exception e){
