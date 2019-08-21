@@ -33,6 +33,11 @@
         where userId = #{userId} and name=#{name}
     </update>
 
+    <update id="updateHistory">
+        update purchase set history = #{history}
+        where Id = #{Id}
+    </update>
+
     <resultMap id="PurchaseRecord" type="com.ninova.mlc.po.PurchaseRecord">
         <result column="id" property="id"></result>
         <result column="userId" property="userId"></result>
