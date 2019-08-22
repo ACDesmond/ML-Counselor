@@ -54,4 +54,9 @@ public interface TraceService {
      * @return
      */
     public ResponseVO getCFPTotalBenefit(int userId,String code);
+
+    /**
+     * 获得某种产品每日收益
+     */
+    public ResponseVO getHistory(int userId,String code);
 }

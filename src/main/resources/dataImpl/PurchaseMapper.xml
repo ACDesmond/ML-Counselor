@@ -7,6 +7,10 @@
         values(#{userId},#{name},#{code},#{principal},#{number},#{type},#{type},#{startTime},#{state})
     </insert>
 
+    <select id="getAll" resultMap="PurchaseRecord">
+        select * from purchase where state=0
+    </select>
+
     <select id="selectRecordsByUserId" resultMap="PurchaseRecord">
         select * from purchase where userId=#{userId} and state=0
     </select>

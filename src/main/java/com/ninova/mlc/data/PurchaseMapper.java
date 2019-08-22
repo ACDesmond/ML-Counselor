@@ -15,6 +15,11 @@ public interface PurchaseMapper {
      */
     public int insertRecord(PurchaseRecord purchaseRecord);
     /**
+     * 获取所有记录
+     * @return
+     */
+    public List<PurchaseRecord> getAll();
+    /**
      * 选择用户当前周期所有购买记录
      * @param userId
      * @return

@@ -7,6 +7,7 @@ import com.ninova.mlc.vo.ResponseVO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Repository
@@ -147,6 +146,24 @@ public class TraceServiceImpl implements TraceService {
         try{
             double CFPTotalBenefit=0.0;
             return ResponseVO.buildSuccess(CFPTotalBenefit);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    @Override
+    public ResponseVO getHistory(int userId,String code){
+        try {
+            PurchaseRecord pr=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
+            String his[]=pr.getHistory().split(",");
+            List<Double> history=new ArrayList<>();
+            for (String item:his){
+                history.add(Double.parseDouble(item));
+            }
+            return ResponseVO.buildSuccess(history);
+
         }
         catch (Exception e){
             e.printStackTrace();
