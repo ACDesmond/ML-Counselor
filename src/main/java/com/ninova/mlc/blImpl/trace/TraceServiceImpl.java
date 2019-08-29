@@ -30,127 +30,15 @@ public class TraceServiceImpl implements TraceService {
 
 
     @Override
-    public ResponseVO getStockDailyBenefit(int userId, String code){
-        try{
-            float stockDailyBenefit;
-            PurchaseRecord stock=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
-            float num=stock.getNumber();
-            float nowPrice=(float)getRequest(code).get("nowPri");
-            float yestodEndPrice=(float)getRequest(code).get("yestodEndPri");
-            stockDailyBenefit=(nowPrice-yestodEndPrice)*num;
-            return ResponseVO.buildSuccess(stockDailyBenefit);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
+    public ResponseVO getAll(int userId){
+        //todo
+        return null;
     }
 
     @Override
-    public ResponseVO getStockTotalBenefit(int userId,String code){
-        try{
-            double stockTotalBenefit;
-            PurchaseRecord stock=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
-            float num=stock.getNumber();
-            float nowPrice=(float)getRequest(code).get("nowPri");
-            double principal=stock.getPrincipal();
-            stockTotalBenefit=nowPrice*num-principal;
-            return ResponseVO.buildSuccess(stockTotalBenefit);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
-    }
-
-    @Override
-    public ResponseVO getfundDailyBenefit(int userId,String code){
-        try{
-            double fundDailyBenefit;
-            PurchaseRecord fund=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
-            float num=fund.getNumber();
-            float dayincrease=(float)getRequest2(code).get("dayincrease");
-            fundDailyBenefit=dayincrease*num;
-            return ResponseVO.buildSuccess(fundDailyBenefit);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
-    }
-
-    @Override
-    public ResponseVO getfundTotalBenefit(int userId,String code){
-        try{
-            double fundTotalBenefit;
-            PurchaseRecord fund=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
-            float num=fund.getNumber();
-            double principal=fund.getPrincipal();
-            float nowPrice=(float)getRequest2(code).get("newnet");
-            fundTotalBenefit=principal-num*nowPrice;
-            return ResponseVO.buildSuccess(fundTotalBenefit);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
-    }
-
-    @Override
-    public ResponseVO getbondDailyBenefit(int userId,String code){
-        try{
-            double bondDailyBenefit;
-            PurchaseRecord bond=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
-            float num=bond.getNumber();
-            float dayincrease=(float)getRequest3(code).get("dayincrease");
-            bondDailyBenefit=dayincrease*num;
-            return ResponseVO.buildSuccess(bondDailyBenefit);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
-    }
-
-    @Override
-    public ResponseVO getbondTotalBenefit(int userId,String code){
-        try{
-            double bondTotalBenefit;
-            PurchaseRecord bond=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
-            float num=bond.getNumber();
-            double principal=bond.getPrincipal();
-            float nowPrice=(float)getRequest3(code).get("newnet");
-            bondTotalBenefit=principal-num*nowPrice;
-            return ResponseVO.buildSuccess(bondTotalBenefit);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
-    }
-
-    @Override
-    public ResponseVO getCFPDailyBenefit(int userId,String code){
-        try{
-            double CFPDailyBenefit=0.0;
-            return ResponseVO.buildSuccess(CFPDailyBenefit);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
-    }
-
-    @Override
-    public ResponseVO getCFPTotalBenefit(int userId,String code){
-        try{
-            double CFPTotalBenefit=0.0;
-            return ResponseVO.buildSuccess(CFPTotalBenefit);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
+    public ResponseVO getSpecific(int userId,String code){
+        //todo
+        return null;
     }
 
     @Override
@@ -171,43 +59,22 @@ public class TraceServiceImpl implements TraceService {
         }
     }
 
-
-    //申请的KEY
-    public static final String APPKEY ="a04675114c99983de7e893dbaca4896c";
     //债券KEY
-    public static final String APPKEY_2 ="da1fc68aff9b013397d0356b5854b8a4";
+    public static final String APPKEY ="da1fc68aff9b013397d0356b5854b8a4";
 
-    //沪深股市
-    public static JSONObject getRequest(String code){
-        String result=null;
-        String url ="http://web.juhe.cn:8080/finance/stock/hs";//请求接口地址
-        Map params = new HashMap();//请求参数
-        params.put("gid","sh"+code);//股票编号，上海股市以sh开头，深圳股市以sz开头如：sh601009
-        params.put("key",APPKEY);//APP Key
-
-        try {
-            result =net(url, params, "GET");
-            JSONObject object = JSONObject.fromObject(result);
-            //转换
-            Object jsonArray=object.get("result");
-            System.out.println(((JSONArray) jsonArray).get(0));
-            JSONObject data=(JSONObject)((JSONArray) jsonArray).get(0);
-            data=data.getJSONObject("data");
-            if(object.getInt("error_code")==0){
-                return data;
-            }else{
-                System.out.println(object.get("error_code")+":"+object.get("reason"));
-                return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    //请求股票数据
+    public static JSONObject getRequest1(String code){
+        //接口地址
+        String requestUrl = "https://api.doctorxiong.club/v1/stock/detail";
+        return getRequest(requestUrl,code);
     }
 
     //请求基金数据
     public static JSONObject getRequest2(String code) {
-        return getRequestall(code,"http://web.juhe.cn:8080/fund/netdata/all");
+        //接口地址
+        String requestUrl = "https://api.doctorxiong.club/v1/fund/detail";
+        //params用于存储要请求的参数
+        return getRequest(requestUrl,code);
     }
 
     //请求债券数据
@@ -215,11 +82,59 @@ public class TraceServiceImpl implements TraceService {
         return getRequestall(code,"http://web.juhe.cn:8080/fund/netdata/bond");
     }
 
+    public static JSONObject getRequest(String requestUrl,String code){
+        //params用于存储要请求的参数
+        Map params = new HashMap();
+        params.put("code",code);
+        String string = httpRequest(requestUrl,params);
+        //处理返回的JSON数据并返回
+        JSONObject object = JSONObject.fromObject(string);
+        System.out.println(object);
+        return object.getJSONObject("data");
+    }
+
+    private static String httpRequest(String requestUrl,Map params) {
+        //buffer用于接受返回的字符
+        StringBuffer buffer = new StringBuffer();
+        try {
+            //建立URL，把请求地址给补全，其中urlencode（）方法用于把params里的参数给取出来
+            URL url = new URL(requestUrl+"?"+urlencode(params));
+            //打开http连接
+            HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();
+            httpUrlConn.setDoInput(true);
+            httpUrlConn.setRequestMethod("GET");
+            httpUrlConn.connect();
+
+            //获得输入
+            InputStream inputStream = httpUrlConn.getInputStream();
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            //将bufferReader的值给放到buffer里
+            String str = null;
+            while ((str = bufferedReader.readLine()) != null) {
+                buffer.append(str);
+            }
+            //关闭bufferReader和输入流
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
+            inputStream = null;
+            //断开连接
+            httpUrlConn.disconnect();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //返回字符串
+        return buffer.toString();
+    }
+
     public static JSONObject getRequestall(String code,String oldUrl){
         String result =null;
         String url =oldUrl;//请求接口地址
         Map params = new HashMap();//请求参数
-        params.put("key",APPKEY_2);//APPKEY值
+        params.put("key",APPKEY);//APPKEY值
 
         try {
             result =net(url, params, "GET");

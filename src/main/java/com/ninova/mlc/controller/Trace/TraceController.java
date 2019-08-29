@@ -13,7 +13,7 @@ public class TraceController {
     @Autowired
     TraceService traceService;
     //股票日收益
-    @PostMapping("/stockDayly")
+    @PostMapping("/stockDaily")
     public ResponseVO getStockDaily(@RequestParam int userId,@RequestParam String code){
         return traceService.getStockDailyBenefit(userId,code);
     }
@@ -23,7 +23,7 @@ public class TraceController {
         return traceService.getStockTotalBenefit(userId,code);
     }
     //基金日收益
-    @PostMapping("/fundDayly")
+    @PostMapping("/fundDaily")
     public ResponseVO getFundDaily(@RequestParam int userId,@RequestParam String code){
         return traceService.getfundDailyBenefit(userId,code);
     }
@@ -33,7 +33,7 @@ public class TraceController {
         return traceService.getfundTotalBenefit(userId,code);
     }
     //债券日收益
-    @PostMapping("/bondDayly")
+    @PostMapping("/bondDaily")
     public ResponseVO getBondDaily(@RequestParam int userId,@RequestParam String code){
         return traceService.getbondDailyBenefit(userId,code);
     }
