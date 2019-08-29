@@ -12,36 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class TraceController {
     @Autowired
     TraceService traceService;
-    //股票日收益
-    @PostMapping("/stockDaily")
-    public ResponseVO getStockDaily(@RequestParam int userId,@RequestParam String code){
-        return traceService.getStockDailyBenefit(userId,code);
+
+    //获取所有产品收益
+    @PostMapping("/all")
+    public ResponseVO getAll(@RequestParam int userId){
+        return traceService.getAll(userId);
     }
-    //股票累积收益
-    @PostMapping("/stockTotal")
-    public ResponseVO getStockTotal(@RequestParam int userId,@RequestParam String code){
-        return traceService.getStockTotalBenefit(userId,code);
+
+    //获取特定产品收益
+    @PostMapping("specific")
+    public ResponseVO getSpecific(@RequestParam int userId,@RequestParam String code){
+        return traceService.getSpecific(userId,code);
     }
-    //基金日收益
-    @PostMapping("/fundDaily")
-    public ResponseVO getFundDaily(@RequestParam int userId,@RequestParam String code){
-        return traceService.getfundDailyBenefit(userId,code);
-    }
-    //基金累积收益
-    @PostMapping("/fundTotal")
-    public ResponseVO getFundTotal(@RequestParam int userId,@RequestParam String code){
-        return traceService.getfundTotalBenefit(userId,code);
-    }
-    //债券日收益
-    @PostMapping("/bondDaily")
-    public ResponseVO getBondDaily(@RequestParam int userId,@RequestParam String code){
-        return traceService.getbondDailyBenefit(userId,code);
-    }
-    //债券累积收益
-    @PostMapping("/bondTotal")
-    public ResponseVO getBondTotal(@RequestParam int userId,@RequestParam String code){
-        return traceService.getbondTotalBenefit(userId,code);
-    }
+
     //获取某种产品每日收益记录
     @PostMapping("/hostory")
     public ResponseVO getHistory(@RequestParam int userId,@RequestParam String code){
