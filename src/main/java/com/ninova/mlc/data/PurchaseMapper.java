@@ -15,6 +15,11 @@ public interface PurchaseMapper {
      */
     public int insertRecord(PurchaseRecord purchaseRecord);
     /**
+     * 获取所有记录
+     * @return
+     */
+    public List<PurchaseRecord> getAll();
+    /**
      * 选择用户当前周期所有购买记录
      * @param userId
      * @return
@@ -34,7 +39,6 @@ public interface PurchaseMapper {
      * @return
      */
     public PurchaseRecord selectRecordByUserIdAndName(@Param("userId")int userId,@Param("name")String name);
-
     /**
      * 选择用户当前周期购买的同种类型产品的所有记录
      * @param userId
@@ -49,7 +53,6 @@ public interface PurchaseMapper {
      * @return
      */
     public int updateStateByUserIdAndCode(@Param("userId")int userId,@Param("code") String code);
-
     /**
      * 根据产品名称更改状态
      *  @param userId
@@ -57,4 +60,10 @@ public interface PurchaseMapper {
      * @return
      */
     public int updateStateByUserIdAndName(@Param("userId")int userId,@Param("name")String name);
+    /**
+     * 更新产品历史涨跌记录
+     * @param id
+     * @param history
+     */
+    public int updateHistory(@Param("id")int id,@Param("history")String history);
 }
