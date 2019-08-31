@@ -30,15 +30,62 @@ public class TraceServiceImpl implements TraceService {
 
 
     @Override
+    //返回purchase库状态为0的所有产品的每日收益和累计收益
     public ResponseVO getAll(int userId){
-        //todo
-        return null;
+        try {
+            List<PurchaseRecord> purchaseRecords = purchaseMapper.selectRecordsByUserId(userId);
+            List<String> earningsReturnAll = new ArrayList<>();
+            String r;
+            for (PurchaseRecord p : purchaseRecords) {
+                String code = p.getCode();
+                double principal = p.getPrincipal();
+                float number = p.getNumber();
+                String dailyEarnings=null;
+                String allEarings=null;
+                if (p.getState() == 0 && p.getType() == 1) {
+                    float nowPrice = (float) getRequest2(code).get("netWorth");
+                    float dayGrowth = (float) getRequest2(code).get("dayGrowth")/100;
+                    dailyEarnings = nowPrice*(dayGrowth/(1+dayGrowth))+"";
+                    allEarings = (float) (nowPrice * number - principal)+"";
+                } else if (p.getState() == 0 && p.getType() == 2) {
+                    float nowPrice = (float) getRequest1(code).get("price");
+                    float yesPrice = (float) getRequest1(code).get("close");
+                    dailyEarnings = (nowPrice - yesPrice) * number+"";
+                    allEarings = (float) (nowPrice * number - principal)+"";
+                }else if(p.getState()==0 && p.getType()==3){
+                    float nowPrice=(float)getRequest3(code).get("newnet");
+                    float dayGrowth = (float) getRequest3(code).get("dayincrease");
+                    dailyEarnings = nowPrice*(dayGrowth/(1+dayGrowth))+"";
+                    allEarings = (float) (nowPrice * number - principal)+"";
+                }
+                r = code + "," + dailyEarnings + "," + allEarings;
+                earningsReturnAll.add(r);
+            }
+            return ResponseVO.buildSuccess(earningsReturnAll);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
     }
 
     @Override
+    //返回某一产品的累计收益和每日收益
     public ResponseVO getSpecific(int userId,String code){
-        //todo
-        return null;
+        try{
+            List<String> earningsReturnAll=(List<String>) getAll(userId).getContent();
+            String r=null;
+            for(String p:earningsReturnAll){
+                String[] temp=p.split(",");
+                String pCode=temp[0];
+                if(code.equals(pCode)){
+                    r=p;
+                }
+            }
+            return ResponseVO.buildSuccess(r);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
     }
 
     @Override
