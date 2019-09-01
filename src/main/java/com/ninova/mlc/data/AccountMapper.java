@@ -4,19 +4,21 @@ import com.ninova.mlc.po.User;
 import com.ninova.mlc.vo.UserForm;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface AccountMapper {
     /**
      * 创建一个新的账号
      * @param username
      * @param password
-     * @param userlevel
+     * @param Tag
      * @return
      */
-    public int createNewAccount(@Param("username") String username, @Param("password") String password, @Param("userlevel") int userlevel);
+    public int createNewAccount(@Param("username") String username, @Param("password") String password, @Param("Tag") int Tag,@Param("Tel")int Tel);
     /**
      * 根据用户名查找账号
      * @param username

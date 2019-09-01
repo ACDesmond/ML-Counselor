@@ -53,4 +53,8 @@ public interface AccountService {
      * @return
      */
     ResponseVO delStaffById(int userId);
+
+    /*发送验证码的接口
+    * */
+    ResponseVO sendVerificationCode(int tel);
 }

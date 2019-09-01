@@ -21,7 +21,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public ResponseVO registerAccount(UserForm userForm) {
         try {
-            accountMapper.createNewAccount(userForm.getUsername(), userForm.getPassword(),0);
+            accountMapper.createNewAccount(userForm.getUsername(), userForm.getPassword(),0,userForm.getTel());
         } catch (Exception e) {
             return ResponseVO.buildFailure(ACCOUNT_EXIST);
         }
@@ -45,7 +45,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public ResponseVO addStaff(UserForm userForm){
         try {
-            accountMapper.createNewAccount(userForm.getUsername(),userForm.getPassword(),userForm.getUserlevel());
+            accountMapper.createNewAccount(userForm.getUsername(),userForm.getPassword(),userForm.getTag(),userForm.getTel());
             return ResponseVO.buildSuccess();
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,7 +113,19 @@ public class AccountServiceImpl implements AccountService {
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");
         }
-    };
+    }
+
+    @Override
+    public ResponseVO sendVerificationCode(int tel) {
+        try {
+            return ResponseVO.buildSuccess();
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    ;
 
 
 }

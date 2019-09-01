@@ -65,4 +65,9 @@ public class AccountController {
     public ResponseVO delStaff(@PathVariable int staffId){
         return accountService.delStaffById(staffId);
     }
+
+    @GetMapping("/VerficationCode")
+    public ResponseVO sendVerfCode(@PathVariable int Tel){
+        return accountService.sendVerificationCode(Tel);
+    }
 }

@@ -10,9 +10,23 @@ public class UserForm {
      */
     private String password;
     /**
-     * 用户操作权限等级，观众为0，影院经理为1，管理员为2
+     * 用户聚类类别，观众为0，影院经理为1，管理员为2
      */
-    private int userlevel;
+    private int Tag;
+    /**
+     * 用户手机号码
+     */
+    private int Tel;
+
+    public int getTel() {
+        return Tel;
+    }
+
+    public void setTel(int tel) {
+        Tel = tel;
+    }
+
+
 
 
     public String getUsername() {
@@ -31,12 +45,12 @@ public class UserForm {
         this.password = password;
     }
 
-    public int getUserlevel(){
-        return userlevel;
+    public int getTag(){
+        return Tag;
     }
 
-    public void setUserlevel(int userlevel){
-        this.userlevel=userlevel;
+    public void setTag(int Tag){
+        this.Tag=Tag;
     }
 }
 
