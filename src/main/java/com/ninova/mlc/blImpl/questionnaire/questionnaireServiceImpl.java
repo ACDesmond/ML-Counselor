@@ -2,16 +2,15 @@ package com.ninova.mlc.blImpl.questionnaire;
 
 import com.ninova.mlc.vo.ResponseVO;
 import com.ninova.mlc.vo.CommodityForm;
-import com.ninova.mlc.data.DataMapper;
+import com.ninova.mlc.data.Data.DataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
-@Repository
 public class questionnaireServiceImpl {
     @Autowired
-    DataMapper dataMapper;
+    private DataMapper dataMapper;
 
     public ResponseVO insertData(CommodityForm commodity){
         int userId=commodity.getUserId();

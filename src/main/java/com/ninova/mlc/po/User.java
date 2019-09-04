@@ -9,20 +9,18 @@ public class User {
     private String username;
     private String password;
 
-
-
-    private Integer Tel;
+    private String emailAdd;
     /**
      * 用户操作权限等级，观众为0，影院经理为1，管理员为2
      */
     private int Tag;
 
-    public Integer getTel() {
-        return Tel;
+    public String getEmailAdd() {
+        return emailAdd;
     }
 
-    public void setTel(Integer tel) {
-        Tel = tel;
+    public void setEmailAdd(String emailAdd) {
+        this.emailAdd = emailAdd;
     }
     public Integer getId() {
         return id;

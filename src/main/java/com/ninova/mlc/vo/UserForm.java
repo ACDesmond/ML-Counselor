@@ -10,25 +10,22 @@ public class UserForm {
      */
     private String password;
     /**
-     * 用户聚类类别，观众为0，影院经理为1，管理员为2
+     * 用户聚类类别
      */
     private int Tag;
+
     /**
-     * 用户手机号码
+     * 用户邮箱地址
      */
-    private int Tel;
+    private String emailAdd;
 
-    public int getTel() {
-        return Tel;
+    public String getEmailAdd() {
+        return emailAdd;
     }
 
-    public void setTel(int tel) {
-        Tel = tel;
+    public void setEmailAdd(String emailAdd) {
+        this.emailAdd = emailAdd;
     }
-
-
-
-
     public String getUsername() {
         return username;
     }

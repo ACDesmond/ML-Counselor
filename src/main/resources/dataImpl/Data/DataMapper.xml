@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ninova.mlc.data.DataMapper">
+<mapper namespace="com.ninova.mlc.data.Data.DataMapper">
     <insert id="insertQuestionnaireData" parameterType="com.ninova.mlc.vo.CommodityForm"
             useGeneratedKeys="true" keyProperty="id">
         insert into Info(id,one,two,three,four,five,six,seven,

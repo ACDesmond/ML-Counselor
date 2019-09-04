@@ -1,10 +1,13 @@
-package com.ninova.mlc.data;
+package com.ninova.mlc.data.Data;
 
 import com.ninova.mlc.vo.CommodityForm;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
 
 @Mapper
+@Repository
 public interface DataMapper {
     /**
      *插入新的金额数据

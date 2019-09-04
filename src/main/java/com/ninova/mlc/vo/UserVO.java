@@ -15,22 +15,25 @@ public class UserVO {
      */
     private int Tag;
 
-    private int Tel;
+
+
+    private String emailAdd;
 
     public UserVO(User user){
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.Tag= user.getTag();
-        this.Tel= user.getTel();
+        this.emailAdd= user.getEmailAdd();
     }
-    public int getTel() {
-        return Tel;
+    public String getEmailAdd() {
+        return emailAdd;
     }
 
-    public void setTel(int tel) {
-        Tel = tel;
+    public void setEmailAdd(String emailAdd) {
+        this.emailAdd = emailAdd;
     }
+
     public Integer getId() {
         return id;
     }

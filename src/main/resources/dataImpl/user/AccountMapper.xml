@@ -2,25 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ninova.mlc.data.user.AccountMapper">
     <insert id="createNewAccount" useGeneratedKeys="true" keyProperty="id">
-        insert into user(username,password,tag,Tel)
-        values(#{username},#{password},#{Tag},#{Tel})
+        insert into user(username,password,tag,Email)
+        values(#{username},#{password},#{Tag},#{emailAdd})
     </insert>
     <select id="getAccountByName" resultMap="User">
         select * from user where username=#{username}
     </select>
 
-    <select id="selectStaffById" resultMap="User">
+    <select id="selectUserById" resultMap="User">
         select * from user where id=#{staffId}
     </select>
 
-    <select id="selectAllStaff" resultMap="User">
+    <select id="selectAllUsers" resultMap="User">
         select * from user
         where user.Tag!=0
         order by user.Tag desc
     </select>
 
-    <update id="updateStaff" parameterType="com.ninova.mlc.vo.UserForm">
-        update user set tag = #{Tag},Tel=#{Tel}
+    <update id="updateUser" parameterType="com.ninova.mlc.vo.UserForm">
+        update user set tag = #{Tag},Email=#{emailAdd}
         where username = #{username}
     </update>
 
@@ -33,6 +33,6 @@
         <result column="username" property="username"></result>
         <result column="password" property="password"></result>
         <result column="tag" property="Tag"></result>
-        <result column="Tel" property="Tel"></result>
+        <result column="Email" property="emailAdd"></result>
     </resultMap>
 </mapper>

@@ -1,4 +1,4 @@
-package com.ninova.mlc.data;
+package com.ninova.mlc.data.user;
 
 import com.ninova.mlc.po.User;
 import com.ninova.mlc.vo.UserForm;
@@ -18,7 +18,7 @@ public interface AccountMapper {
      * @param Tag
      * @return
      */
-    public int createNewAccount(@Param("username") String username, @Param("password") String password, @Param("Tag") int Tag,@Param("Tel")int Tel);
+    public int createNewAccount(@Param("username") String username, @Param("password") String password, @Param("Tag") int Tag,@Param("emailAdd")String emailAdd);
     /**
      * 根据用户名查找账号
      * @param username
@@ -32,18 +32,18 @@ public interface AccountMapper {
      * @param staffId
      * @return
      */
-    User selectStaffById(@Param("staffId") int staffId);
+    User selectUserById(@Param("staffId") int staffId);
     /**
      * 展示所有员工
      * @return
      */
-    List<User> selectAllStaff();
+    List<User> selectAllUsers();
     /**
      * 修改员工信息
      * @param updateStaffForm
      * @return
      */
-    int updateStaff(UserForm updateStaffForm);
+    int updateUser(UserForm updateStaffForm);
     /**
      * 根据ID删除员工信息
      * @param id

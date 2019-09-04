@@ -32,7 +32,7 @@ public interface AccountService {
      * @param userForm
      * @return
      */
-    ResponseVO updateStaffInfo(UserForm userForm);
+    ResponseVO updateUserInfo(UserForm userForm);
 
     /**
      * 根据id查询员工信息
@@ -41,11 +41,6 @@ public interface AccountService {
      */
     ResponseVO searchStaffById(int userId);
 
-    /**
-     * 查询所有员工信息
-     * @return
-     */
-    ResponseVO searchAllStaff();
 
     /**
      * 根据id删除员工
@@ -56,5 +51,9 @@ public interface AccountService {
 
     /*发送验证码的接口
     * */
-    ResponseVO sendVerificationCode(int tel);
+    ResponseVO sendVerificationCode(String emailAdd);
+
+    ResponseVO getEmail(int userID);
+
+    ResponseVO compareCode(String email, String code);
 }
