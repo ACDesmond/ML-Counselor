@@ -3,8 +3,8 @@
 <mapper namespace="com.ninova.mlc.data.PurchaseMapper">
 
     <insert id="insertRecord" parameterType="com.ninova.mlc.vo.PurchaseRecordVO" useGeneratedKeys="true" keyProperty="id">
-        insert into purchase(userId,name,code,principal,number,type,startTime,state)
-        values(#{userId},#{name},#{code},#{principal},#{number},#{type},#{type},#{startTime},#{state})
+        insert into purchase(userId,name,code,principal,number,type,startTime,history,state)
+        values(#{userId},#{name},#{code},#{principal},#{number},#{type},#{type},#{startTime},'0',#{state})
     </insert>
 
     <select id="getAll" resultMap="PurchaseRecord">

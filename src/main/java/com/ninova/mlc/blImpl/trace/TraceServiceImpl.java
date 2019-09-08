@@ -59,6 +59,18 @@ public class TraceServiceImpl implements TraceService {
         }
     }
 
+    @Override
+    public ResponseVO getSevenHistory(int userId){
+        try {
+            
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+        return null;
+    }
+
     //债券KEY
     public static final String APPKEY ="da1fc68aff9b013397d0356b5854b8a4";
 

@@ -20,7 +20,7 @@ public class TraceController {
     }
 
     //获取特定产品收益
-    @PostMapping("specific")
+    @PostMapping("/specific")
     public ResponseVO getSpecific(@RequestParam int userId,@RequestParam String code){
         return traceService.getSpecific(userId,code);
     }
@@ -30,5 +30,12 @@ public class TraceController {
     public ResponseVO getHistory(@RequestParam int userId,@RequestParam String code){
         return traceService.getHistory(userId,code);
     }
+
+    //获取某位用户所有产品最近7日的收益
+    @PostMapping("/sevenHistory")
+    public ResponseVO getSevenHistory(@RequestParam int userId){
+        return traceService.getSevenHistory(userId);
+    }
+
 
 }

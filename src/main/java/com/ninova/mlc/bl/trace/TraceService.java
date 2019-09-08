@@ -27,4 +27,11 @@ public interface TraceService {
      * @return
      */
     public ResponseVO getHistory(int userId,String code);
+
+    /**
+     * 获得某一用户所有产品的最近七日收益
+     * @param userId
+     * @return
+     */
+    public ResponseVO getSevenHistory(int userId);
 }
