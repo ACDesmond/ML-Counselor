@@ -3,7 +3,9 @@ package com.ninova.mlc.blImpl.trace;
 import com.ninova.mlc.bl.trace.TraceService;
 import com.ninova.mlc.data.PurchaseMapper;
 import com.ninova.mlc.po.PurchaseRecord;
+import com.ninova.mlc.vo.DailyBenefitVO;
 import com.ninova.mlc.vo.ResponseVO;
+import com.ninova.mlc.vo.TraceVO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -62,13 +65,41 @@ public class TraceServiceImpl implements TraceService {
     @Override
     public ResponseVO getSevenHistory(int userId){
         try {
-            
+            List<PurchaseRecord> all=purchaseMapper.getAll();
+            List<PurchaseRecord> presentUser=new ArrayList<>();
+            List<String> columns=new ArrayList<>();
+            TraceVO response=new TraceVO();
+            columns.add("日期");
+            for (PurchaseRecord pr:all){
+                if (pr.getUserId()==userId){
+                    presentUser.add(pr);
+                    columns.add(pr.getName());
+                }
+            }
+            // 6 1 5 3 4 5
+            response.setColumns(columns);
+            DailyBenefitVO[] dailyBenefitVOS=new DailyBenefitVO[7];
+            for (int i=0;i<7;i++){
+                DailyBenefitVO dailyBenefitVO=new DailyBenefitVO();
+                dailyBenefitVO.setDate(getDate(7-i));
+                List<Double> list=new ArrayList<>();
+                for (PurchaseRecord item:presentUser){
+                    String stringHistory=item.getHistory();
+                    if (stringHistory.length()> (2 * (7-i)) ){
+                        int index=stringHistory.length()-((6-i)*2+1);
+                        list.add(Double.parseDouble(stringHistory.substring(index,index+1)));
+                    }
+                }
+                dailyBenefitVO.setBenefits(list);
+                dailyBenefitVOS[i]=dailyBenefitVO;
+            }
+            response.setRows(dailyBenefitVOS);
+            return ResponseVO.buildSuccess(response);
         }
         catch (Exception e){
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");
         }
-        return null;
     }
 
     //债券KEY
@@ -224,6 +255,7 @@ public class TraceServiceImpl implements TraceService {
         }
         return rs;
     }
+
     public static String urlencode(Map<String,Object>data) {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry i : data.entrySet()) {
@@ -234,5 +266,14 @@ public class TraceServiceImpl implements TraceService {
             }
         }
         return sb.toString();
+    }
+
+    public static String getDate(int day){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar=new GregorianCalendar();
+        calendar.setTime(new Date());
+        calendar.add(calendar.DATE,-day);
+        String dd=sdf.format(calendar.getTime());
+        return dd;
     }
 }
