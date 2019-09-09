@@ -33,5 +33,5 @@ public interface TraceService {
      * @param userId
      * @return
      */
-    public ResponseVO getSevenHistory(int userId);
+    public ResponseVO getMonthHistory(int userId);
 }

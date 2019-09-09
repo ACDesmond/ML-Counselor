@@ -63,7 +63,7 @@ public class TraceServiceImpl implements TraceService {
     }
 
     @Override
-    public ResponseVO getSevenHistory(int userId){
+    public ResponseVO getMonthHistory(int userId){
         try {
             List<PurchaseRecord> all=purchaseMapper.getAll();
             List<PurchaseRecord> presentUser=new ArrayList<>();
@@ -78,15 +78,15 @@ public class TraceServiceImpl implements TraceService {
             }
             // 6 1 5 3 4 5
             response.setColumns(columns);
-            DailyBenefitVO[] dailyBenefitVOS=new DailyBenefitVO[7];
-            for (int i=0;i<7;i++){
+            DailyBenefitVO[] dailyBenefitVOS=new DailyBenefitVO[30];
+            for (int i=0;i<30;i++){
                 DailyBenefitVO dailyBenefitVO=new DailyBenefitVO();
-                dailyBenefitVO.setDate(getDate(7-i));
+                dailyBenefitVO.setDate(getDate(30-i));
                 List<Double> list=new ArrayList<>();
                 for (PurchaseRecord item:presentUser){
                     String stringHistory=item.getHistory();
-                    if (stringHistory.length()> (2 * (7-i)) ){
-                        int index=stringHistory.length()-((6-i)*2+1);
+                    if (stringHistory.length()> (2 * (30-i)) ){
+                        int index=stringHistory.length()-((29-i)*2+1);
                         list.add(Double.parseDouble(stringHistory.substring(index,index+1)));
                     }
                 }
