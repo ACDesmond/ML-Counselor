@@ -5,7 +5,7 @@ import com.ninova.mlc.vo.CommodityForm;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface questionnaireService {
+public interface QuestionnaireService {
     /**
      * 插入问卷的数据(已经有则会覆盖)
      */
