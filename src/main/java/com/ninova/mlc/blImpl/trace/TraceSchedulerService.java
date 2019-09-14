@@ -19,22 +19,10 @@ public class TraceSchedulerService {
     public void recordHistory(){
         List<PurchaseRecord> records=purchaseMapper.getAll();
         for (PurchaseRecord purchaseRecord:records){
-            switch (purchaseRecord.getType()){
-                case 1:
-                    double dailyBenefit1=(double)traceService.getfundDailyBenefit(purchaseRecord.getUserId(),purchaseRecord.getCode()).getContent();
-                    purchaseMapper.updateHistory(purchaseRecord.getId(),purchaseRecord.getHistory()+","+dailyBenefit1);
-                    break;
-                case 2:
-                    double dailyBenefit2=(double)traceService.getStockDailyBenefit(purchaseRecord.getUserId(),purchaseRecord.getCode()).getContent();
-                    purchaseMapper.updateHistory(purchaseRecord.getId(),purchaseRecord.getHistory()+","+dailyBenefit2);
-                    break;
-                case 3:
-                    double dailyBenefit3=(double)traceService.getbondDailyBenefit(purchaseRecord.getUserId(),purchaseRecord.getCode()).getContent();
-                    purchaseMapper.updateHistory(purchaseRecord.getId(),purchaseRecord.getHistory()+","+dailyBenefit3);
-                    break;
-                default:
-                    break;
+            String history=purchaseRecord.getHistory();
+            double todayBenefit=(double)traceService.getSpecific(purchaseRecord.getUserId(),purchaseRecord.getCode()).getContent();
+            history=history+","+todayBenefit;
+            purchaseMapper.updateHistory(purchaseRecord.getId(),history);
             }
         }
-    }
 }
