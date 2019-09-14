@@ -40,7 +40,7 @@ public class TraceController {
 
     @PostMapping("/addPurchase")
     public ResponseVO addPurchase(@RequestParam PurchaseForm purchaseForm){
-        return traceService.addPurhcase(purchaseForm);
+        return traceService.addPurchase(purchaseForm);
     };
 
 
