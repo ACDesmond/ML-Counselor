@@ -34,7 +34,7 @@ public class TraceController {
     //获取某位用户所有产品最近7日的收益
     @PostMapping("/sevenHistory")
     public ResponseVO getMonthHistory(@RequestParam int userId){
-        return traceService.getAllHistory(userId);
+        return traceService.getMonthHistory(userId);
     }
 
 
