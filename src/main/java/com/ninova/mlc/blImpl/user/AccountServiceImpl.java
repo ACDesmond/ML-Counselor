@@ -113,7 +113,7 @@ public class AccountServiceImpl implements AccountService {
         try {
             Timestamp currenttime = new Timestamp(System.currentTimeMillis());
             verf_code_service.sendVerfCode(emailAdd,currenttime);
-            return ResponseVO.buildSuccess();
+            return ResponseVO.buildSuccess("发送成功");
         }catch (Exception ex){
             ex.printStackTrace();
             return ResponseVO.buildFailure("失败");

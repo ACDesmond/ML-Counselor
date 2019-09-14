@@ -155,20 +155,22 @@ for i in range(len(prediction)):
     fifth_return.append(reclose.iloc[split_line+i,:][fifth].mean())
     
     market_return.append(reclose.iloc[split_line+i,:].mean())
-    print(result_df.head(5))
+    for i in range(10):
+        print(result_df.iloc[i].name)
+    # print(result_df.head(5))
     
     
 #画图
-t=list(range(len(prediction)))
-plt.figure(figsize=(12,9),dpi=100)
-plt.plot(t,first_return,color='red',label='first')
-#plt.plot(t,second_return,color='green',label='second')
-#plt.plot(t,third_return,color='black',label='third')
-#plt.plot(t,fourth_return,color='blue',label='fourth')
-plt.plot(t,fifth_return,color='green',label='fifth')
-plt.plot(t,market_return,color='black',label='market_mean')
-plt.legend(loc='upper left')
-plt.show()
+# t=list(range(len(prediction)))
+# plt.figure(figsize=(12,9),dpi=100)
+# plt.plot(t,first_return,color='red',label='first')
+# #plt.plot(t,second_return,color='green',label='second')
+# #plt.plot(t,third_return,color='black',label='third')
+# #plt.plot(t,fourth_return,color='blue',label='fourth')
+# plt.plot(t,fifth_return,color='green',label='fifth')
+# plt.plot(t,market_return,color='black',label='market_mean')
+# plt.legend(loc='upper left')
+# plt.show()
 
 
 #因子特征重要性
