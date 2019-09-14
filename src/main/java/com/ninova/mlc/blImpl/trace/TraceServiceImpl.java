@@ -4,12 +4,12 @@ import com.ninova.mlc.bl.trace.TraceService;
 import com.ninova.mlc.data.PurchaseMapper;
 import com.ninova.mlc.po.PurchaseRecord;
 import com.ninova.mlc.vo.DailyBenefitVO;
+import com.ninova.mlc.vo.PurchaseForm;
 import com.ninova.mlc.vo.ResponseVO;
 import com.ninova.mlc.vo.TraceVO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -145,6 +145,17 @@ public class TraceServiceImpl implements TraceService {
             return ResponseVO.buildSuccess(response);
         }
         catch (Exception e){
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    @Override
+    public ResponseVO addPurchase(PurchaseForm purchaseForm){
+        try {
+            purchaseMapper.insertRecord(purchaseForm);
+            return ResponseVO.buildSuccess();
+        }catch (Exception e){
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");
         }

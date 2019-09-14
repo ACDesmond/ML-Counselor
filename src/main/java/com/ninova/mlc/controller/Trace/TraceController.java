@@ -2,6 +2,7 @@ package com.ninova.mlc.controller.Trace;
 
 
 import com.ninova.mlc.bl.trace.TraceService;
+import com.ninova.mlc.vo.PurchaseForm;
 import com.ninova.mlc.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,11 @@ public class TraceController {
     public ResponseVO getMonthHistory(@RequestParam int userId){
         return traceService.getMonthHistory(userId);
     }
+
+    @PostMapping("/addPurchase")
+    public ResponseVO addPurchase(@RequestParam PurchaseForm purchaseForm){
+        return traceService.addPurhcase(purchaseForm);
+    };
 
 
 }
