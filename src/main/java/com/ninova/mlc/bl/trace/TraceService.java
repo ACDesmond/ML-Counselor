@@ -42,4 +42,10 @@ public interface TraceService {
      * @return
      */
     public ResponseVO addPurchase(PurchaseForm purchaseForm);
+
+    /**
+     * 获得累积收益
+     * @return
+     */
+    public ResponseVO getTotal(int userId);
 }

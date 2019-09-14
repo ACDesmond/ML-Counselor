@@ -3,10 +3,7 @@ package com.ninova.mlc.blImpl.trace;
 import com.ninova.mlc.bl.trace.TraceService;
 import com.ninova.mlc.data.PurchaseMapper;
 import com.ninova.mlc.po.PurchaseRecord;
-import com.ninova.mlc.vo.DailyBenefitVO;
-import com.ninova.mlc.vo.PurchaseForm;
-import com.ninova.mlc.vo.ResponseVO;
-import com.ninova.mlc.vo.TraceVO;
+import com.ninova.mlc.vo.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +14,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -155,6 +153,51 @@ public class TraceServiceImpl implements TraceService {
         try {
             purchaseMapper.insertRecord(purchaseForm);
             return ResponseVO.buildSuccess();
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    @Override
+    public ResponseVO getTotal(int userId){
+        try {
+            List<PurchaseRecord> all=purchaseMapper.selectRecordsByUserId(userId);
+            //总投入
+            double totalInput=0;
+            //总价值
+            double total=0;
+            //总收益
+            double totalIncome=0;
+            List<MessageItem> scheme=new ArrayList<>();
+            for (PurchaseRecord purchaseRecord:all){
+                int type=purchaseRecord.getType();
+                if (type==0){
+                    continue;
+                }
+                String name=purchaseRecord.getName();
+                Timestamp time1=purchaseRecord.getStartTime();
+                String s=(String)getSpecific(userId,purchaseRecord.getCode()).getContent();
+                double earning=Double.parseDouble(s.split(",")[2]);
+                double growthRate=earning/purchaseRecord.getPrincipal();
+                MessageItem messageItem=new MessageItem();
+                messageItem.setGrowthRate(growthRate);
+                messageItem.setName(name);
+                messageItem.setTime1(time1);
+                scheme.add(messageItem);
+
+                totalInput=totalInput+purchaseRecord.getPrincipal();
+                total=total+earning+purchaseRecord.getPrincipal();
+                totalIncome=totalIncome+earning;
+
+            }
+            Message message=new Message();
+            message.setScheme(scheme);
+            message.setTotal(total);
+            message.setTotalInput(totalInput);
+            message.setTotalIncome(totalIncome);
+
+            return ResponseVO.buildSuccess(message);
         }catch (Exception e){
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");

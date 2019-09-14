@@ -14,6 +14,7 @@ public class TraceController {
     @Autowired
     TraceService traceService;
 
+    /**
     //获取所有产品收益
     @PostMapping("/all")
     public ResponseVO getAll(@RequestParam int userId){
@@ -31,9 +32,10 @@ public class TraceController {
     public ResponseVO getHistory(@RequestParam int userId,@RequestParam String code){
         return traceService.getHistory(userId,code);
     }
+    **/
 
-    //获取某位用户所有产品最近7日的收益
-    @PostMapping("/sevenHistory")
+    //获取某位用户所有产品最近30日的收益
+    @PostMapping("/monthHistory")
     public ResponseVO getMonthHistory(@RequestParam int userId){
         return traceService.getMonthHistory(userId);
     }
@@ -41,7 +43,13 @@ public class TraceController {
     @PostMapping("/addPurchase")
     public ResponseVO addPurchase(@RequestParam PurchaseForm purchaseForm){
         return traceService.addPurchase(purchaseForm);
-    };
+    }
+
+    //获取message
+    @PostMapping("/getTotal")
+    public ResponseVO getTotal(@RequestParam int userId){
+        return traceService.getTotal(userId);
+    }
 
 
 }
