@@ -1,0 +1,78 @@
+diff a/pom.xml b/pom.xml	(rejected hunks)
+@@ -19,11 +19,6 @@
+     </properties>
+ 
+     <dependencies>
+-
+-        <dependency>
+-            <groupId>org.springframework.boot</groupId>
+-            <artifactId>spring-boot-starter-jdbc</artifactId>
+-        </dependency>
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter</artifactId>
+@@ -44,58 +39,24 @@
+             <artifactId>mybatis-spring-boot-starter</artifactId>
+             <version>1.3.2</version>
+         </dependency>
+-
+         <dependency>
+             <groupId>mysql</groupId>
+             <artifactId>mysql-connector-java</artifactId>
+             <scope>runtime</scope>
+         </dependency>
+ 
+-        <!--发邮件-->
++        <!--JSON-->
+         <dependency>
+-            <groupId>org.apache.commons</groupId>
+-            <artifactId>commons-email</artifactId>
+-            <version>1.5</version>
++            <groupId>net.sf.json-lib</groupId>
++            <artifactId>json-lib</artifactId>
++            <version>2.2.3</version>
++            <classifier>jdk15</classifier>
+         </dependency>
+-    </dependencies>
+ 
+ 
++    </dependencies>
+ 
+     <build>
+-
+-        <resources>
+-            <resource>
+-                <directory>src/main/resources</directory>
+-                <includes>
+-                    <include>**/*.xml</include>
+-                    <include>**/*.properties</include>
+-                </includes>
+-            </resource>
+-            <resource>
+-                <directory>src/main/java</directory>
+-                <includes>
+-                    <include>**/*.properties</include>
+-                </includes>
+-            </resource>
+-            <resource>
+-                <directory>src/main/java</directory>
+-                <includes>
+-                    <include>**/*.yml</include>
+-                    <include>**/*.properties</include>
+-                    <include>**/*.xml</include>
+-                </includes>
+-                <filtering>false</filtering>
+-            </resource>
+-            <resource>
+-                <directory>src/main/resources</directory>
+-                <includes>
+-                    <include>**/*.yml</include>
+-                    <include>**/*.properties</include>
+-                    <include>**/*.xml</include>
+-                </includes>
+-                <filtering>false</filtering>
+-            </resource>
+-        </resources>
+         <plugins>
+             <plugin>
+                 <groupId>org.springframework.boot</groupId>
