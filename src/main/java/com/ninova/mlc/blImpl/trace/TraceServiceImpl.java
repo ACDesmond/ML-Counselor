@@ -92,12 +92,12 @@ public class TraceServiceImpl implements TraceService {
     public ResponseVO getHistory(int userId,String code){
         try {
             PurchaseRecord pr=purchaseMapper.selectRecordByUserIdAndCode(userId,code);
-            String his[]=pr.getHistory().split(",");
+            String his[]=pr.getHistory().split(",");return ResponseVO.buildSuccess(history);
+
             List<Double> history=new ArrayList<>();
             for (String item:his){
                 history.add(Double.parseDouble(item));
             }
-            return ResponseVO.buildSuccess(history);
 
         }
         catch (Exception e){
