@@ -13,13 +13,25 @@ public class UserVO {
     /**
      * 用户操作权限等级，观众为0，影院经理为1，管理员为2
      */
-    private int userlevel;
+    private int Tag;
+
+
+
+    private String emailAdd;
 
     public UserVO(User user){
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
-        this.userlevel= user.getUserlevel();
+        this.Tag= user.getTag();
+        this.emailAdd= user.getEmailAdd();
+    }
+    public String getEmailAdd() {
+        return emailAdd;
+    }
+
+    public void setEmailAdd(String emailAdd) {
+        this.emailAdd = emailAdd;
     }
 
     public Integer getId() {
@@ -46,11 +58,11 @@ public class UserVO {
         this.password = password;
     }
 
-    public int getUserlevel(){
-        return userlevel;
+    public int getTag(){
+        return Tag;
     }
 
-    public void setUserlevel(int userlevel){
-        this.userlevel=userlevel;
+    public void setTag(int Tag){
+        this.Tag=Tag;
     }
 }

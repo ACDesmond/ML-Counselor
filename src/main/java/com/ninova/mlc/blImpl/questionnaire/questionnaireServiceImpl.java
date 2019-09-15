@@ -1,32 +1,24 @@
 package com.ninova.mlc.blImpl.questionnaire;
 
+import com.ninova.mlc.bl.questionnaire.QuestionnaireService;
 import com.ninova.mlc.vo.ResponseVO;
 import com.ninova.mlc.vo.CommodityForm;
-import com.ninova.mlc.data.DataMapper;
+import com.ninova.mlc.data.Data.DataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
-@Repository
-public class questionnaireServiceImpl {
+public class questionnaireServiceImpl implements QuestionnaireService {
     @Autowired
-    DataMapper dataMapper;
+    private DataMapper dataMapper;
 
     public ResponseVO insertData(CommodityForm commodity){
-        int userId=commodity.getUserId();
-        CommodityForm commodityForm=new CommodityForm();
-        commodityForm=dataMapper.getQuestionnaireData(userId);
         try {
-            if(commodityForm==null) {
-                dataMapper.insertQuestionnaireData(commodity);
-                return ResponseVO.buildSuccess();
-            }
-            else {
-                dataMapper.deleteQuestionnaireData(userId);
-                dataMapper.insertQuestionnaireData(commodity);
-                return ResponseVO.buildSuccess();
-            }
+            int userId=commodity.getUserId();
+            dataMapper.deleteQuestionnaireData(userId);
+            dataMapper.insertQuestionnaireData(commodity);
+            return ResponseVO.buildSuccess();
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ninova.mlc.data.Data.DataMapper">
+    <insert id="insertQuestionnaireData" parameterType="com.ninova.mlc.vo.CommodityForm"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into info(userId,start,end,time,self_designed,one,two,three,four,five,six,seven,
+        eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen,
+        eighteen,nineteen,twenty,twentyone,twentytwo,twentythree,twentyfour,twentyfive,
+        twentysix,twentyseven,twentyeight,twentynine_province,twentynine_city,thirty)
+        values(#{userId},#{start},#{end},#{time},#{selfdesigned},#{one},#{two},#{three},#{four},#{five},#{six},#{seven},
+        #{eight},#{nine},#{ten},#{eleven},#{twelve},#{thirteen},#{fourteen},#{fifteen},#{sixteen},#{seventeen},
+        #{eighteen},#{nineteen},#{twenty},#{twentyone},#{twentytwo},#{twentythree},#{twentyfour},#{twentyfive},
+        #{twentysix},#{twentyseven},#{twentyeight},#{twentynine_province},#{twentynine_city},#{thirty})
+    </insert>
+    <delete id="deleteQuestionnaireData">
+        delete from info where id=#{userId}
+    </delete>
+    <select id="getQuestionnaireData" resultMap="CommodityForm">
+        select * from info where id=#{userId}
+    </select>
+    <resultMap id="CommodityForm" type="com.ninova.mlc.vo.CommodityForm">
+        <result column="userId" property="userId"></result>
+        <result column="start" property="start"></result>
+        <result column="end" property="end"></result>
+        <result column="time" property="time"></result>
+        <result column="self_designed" property="selfdesigned"></result>
+        <result column="one" property="one"></result>
+        <result column="two" property="two"></result>
+        <result column="three" property="three"></result>
+        <result column="four" property="four"></result>
+        <result column="five" property="five"></result>
+        <result column="six" property="six"></result>
+        <result column="seven" property="seven"></result>
+        <result column="eight" property="eight"></result>
+        <result column="nine" property="nine"></result>
+        <result column="ten" property="ten"></result>
+        <result column="eleven" property="eleven"></result>
+        <result column="twelve" property="twelve"></result>
+        <result column="thirteen" property="thirteen"></result>
+        <result column="fourteen" property="fourteen"></result>
+        <result column="fifteen " property="fifteen "></result>
+        <result column="sixteen" property="sixteen"></result>
+        <result column="seventeen" property="seventeen"></result>
+        <result column="eighteen" property="eighteen"></result>
+        <result column="nineteen" property="nineteen"></result>
+        <result column="twenty" property="twenty"></result>
+        <result column="twentyone" property="twentyone"></result>
+        <result column="twentytwo" property="twentytwo"></result>
+        <result column="twentythree" property="twentythree"></result>
+        <result column="twentyfour" property="twentyfour"></result>
+        <result column="twentyfive" property="twentyfive"></result>
+        <result column="twentysix" property="twentysix"></result>
+        <result column="twentyseven" property="twentyseven"></result>
+        <result column="twentyeight" property="twentyeight"></result>
+        <result column="twentynine_province" property="twentynine_province"></result>
+        <result column="twentynine_city" property="twentynine_city"></result>
+        <result column="thirty" property="thirty"></result>
+    </resultMap>
+</mapper>

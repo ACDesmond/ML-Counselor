@@ -10,11 +10,22 @@ public class UserForm {
      */
     private String password;
     /**
-     * 用户操作权限等级，观众为0，影院经理为1，管理员为2
+     * 用户聚类类别
      */
-    private int userlevel;
+    private int Tag;
 
+    /**
+     * 用户邮箱地址
+     */
+    private String emailAdd;
 
+    public String getEmailAdd() {
+        return emailAdd;
+    }
+
+    public void setEmailAdd(String emailAdd) {
+        this.emailAdd = emailAdd;
+    }
     public String getUsername() {
         return username;
     }
@@ -31,12 +42,12 @@ public class UserForm {
         this.password = password;
     }
 
-    public int getUserlevel(){
-        return userlevel;
+    public int getTag(){
+        return Tag;
     }
 
-    public void setUserlevel(int userlevel){
-        this.userlevel=userlevel;
+    public void setTag(int Tag){
+        this.Tag=Tag;
     }
 }
 

@@ -8,11 +8,20 @@ public class User {
     private Integer id;
     private String username;
     private String password;
+
+    private String emailAdd;
     /**
      * 用户操作权限等级，观众为0，影院经理为1，管理员为2
      */
-    private int userlevel;
+    private int Tag;
 
+    public String getEmailAdd() {
+        return emailAdd;
+    }
+
+    public void setEmailAdd(String emailAdd) {
+        this.emailAdd = emailAdd;
+    }
     public Integer getId() {
         return id;
     }
@@ -37,11 +46,11 @@ public class User {
         this.password = password;
     }
 
-    public int getUserlevel(){
-        return userlevel;
+    public int getTag(){
+        return Tag;
     }
 
-    public void setUserlevel(int userlevel){
-        this.userlevel=userlevel;
+    public void setTag(int Tag){
+        this.Tag=Tag;
     }
 }

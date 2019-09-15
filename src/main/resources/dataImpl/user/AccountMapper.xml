@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ninova.mlc.data.user.AccountMapper">
+    <insert id="createNewAccount" useGeneratedKeys="true" keyProperty="id">
+        insert into user(username,password,tag,Email)
+        values(#{username},#{password},#{Tag},#{emailAdd})
+    </insert>
+    <select id="getAccountByName" resultMap="User">
+        select * from user where username=#{username}
+    </select>
+
+    <select id="selectUserById" resultMap="User">
+        select * from user where id=#{staffId}
+    </select>
+
+    <select id="selectAllUsers" resultMap="User">
+        select * from user
+        where user.Tag!=0
+        order by user.Tag desc
+    </select>
+
+    <update id="updateUser" parameterType="com.ninova.mlc.vo.UserForm">
+        update user set tag = #{Tag},Email=#{emailAdd}
+        where username = #{username}
+    </update>
+
+    <delete id="delStaffById">
+        delete from user where id=#{id}
+    </delete>
+
+    <resultMap id="User" type="com.ninova.mlc.po.User">
+        <result column="id" property="id"></result>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="tag" property="Tag"></result>
+        <result column="Email" property="emailAdd"></result>
+    </resultMap>
+</mapper>

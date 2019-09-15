@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ninova.mlc.data.user.VerfCodeMapper">
+    <insert id="addVerfCode">
+        insert into verf_code(email, verf_code,time)
+        values (#{emailAdd},#{VerfCode},#{time})
+    </insert>
+
+    <select id="getVerfCode" resultMap="verf_code">
+        select * from verf_code where email=#{email}
+    </select>
+    
+    <delete id="deleteCode">
+        delete from verf_code where email=#{email}
+    </delete>
+
+    <delete id="cleanExpiredCode">
+        delete from verf_code where UNIX_TIMESTAMP(now())-UNIX_TIMESTAMP(time)>300
+    </delete>
+
+    <resultMap id="verf_code" type="com.ninova.mlc.po.verf_code_form">
+        <result column="email" property="email"></result>
+        <result column="verf_code" property="verf_code"></result>
+        <result column="time" property="time"></result>
+    </resultMap>
+</mapper>
