@@ -5,11 +5,13 @@ from sklearn import svm
 from sklearn.metrics import accuracy_score
 import pickle
 import pymysql
-
+import os
 
 
 def load(filename):
-    with open("D:\\花旗杯\\mlc\\src\\main\\resources\\pythonFile\\algo\\model", 'rb') as fp:
+    module_path = os.path.dirname(__file__)
+    filename = module_path + '\\'+filename
+    with open(filename, 'rb') as fp:
         return pickle.load(fp, encoding='latin1')
     print('end')
 
@@ -36,7 +38,8 @@ def getUser():
 clf = load('model')
 data=getUser()
 predict_target = clf.predict(data)
-file="D:\\花旗杯\\mlc\\src\\main\\resources\\pythonFile\\algo\\param.txt"
+module_path = os.path.dirname(__file__)
+file = module_path + '\\param.txt'
 f= open(file,"r")
 content=f.read().split("\n")
 for line in content:
