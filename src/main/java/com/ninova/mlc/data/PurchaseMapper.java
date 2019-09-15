@@ -1,6 +1,7 @@
 package com.ninova.mlc.data;
 
 import com.ninova.mlc.po.PurchaseRecord;
+import com.ninova.mlc.vo.PurchaseForm;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,10 +11,10 @@ import java.util.List;
 public interface PurchaseMapper {
     /**
      * 插入一条记录
-     * @param purchaseRecord
+     * @param purchaseForm
      * @return
      */
-    public int insertRecord(PurchaseRecord purchaseRecord);
+    public int insertRecord(PurchaseForm purchaseForm);
     /**
      * 获取所有记录
      * @return

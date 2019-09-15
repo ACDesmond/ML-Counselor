@@ -1,5 +1,6 @@
 package com.ninova.mlc.bl.trace;
 
+import com.ninova.mlc.vo.PurchaseForm;
 import com.ninova.mlc.vo.ResponseVO;
 import org.springframework.stereotype.Repository;
 
@@ -34,4 +35,17 @@ public interface TraceService {
      * @return
      */
     public ResponseVO getMonthHistory(int userId);
+
+    /**
+     * 增加一条购买记录
+     * @param purchaseForm
+     * @return
+     */
+    public ResponseVO addPurchase(PurchaseForm purchaseForm);
+
+    /**
+     * 获得累积收益
+     * @return
+     */
+    public ResponseVO getTotal(int userId);
 }

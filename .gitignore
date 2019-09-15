@@ -29,3 +29,7 @@ build/
 
 ### VS Code ###
 .vscode/
+sql/mlc_REMOTE_19368.sql
+sql/mlc_LOCAL_19368.sql
+sql/mlc_BASE_19368.sql
+sql/mlc_BACKUP_19368.sql
