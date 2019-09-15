@@ -2,8 +2,12 @@ package com.ninova.mlc.vo;
 
 public class CommodityForm {
     private int userId;
+    private String start;
+    private String end;
+    private int time;
+    private String selfdesigned;
     private int one;
-    private float two;
+    private double two;
     private int three;
     private int four;
     private int five;
@@ -14,23 +18,24 @@ public class CommodityForm {
     private int ten;
     private int eleven;
     private int twelve;
-    private float thirteen;
-    private float fourteen;
-    private float fifteen;
-    private float sixteen;
-    private float seventeen;
-    private float eighteen;
-    private float nineteen;
-    private float twenty;
-    private float twentyone;
-    private float twentytwo;
-    private float twentythree;
+    private double thirteen;
+    private double fourteen;
+    private double fifteen;
+    private double sixteen;
+    private double seventeen;
+    private double eighteen;
+    private double nineteen;
+    private double twenty;
+    private double twentyone;
+    private double twentytwo;
+    private double twentythree;
     private int twentyfour;
     private String twentyfive;
     private int twentysix;
     private int twentyseven;
     private int twentyeight;
-    private int twentynine;
+    private String twentynine_province;
+    private String twentynine_city;
     private int thirty;
 
     public void setUserId(int userId) {
@@ -41,6 +46,18 @@ public class CommodityForm {
         return userId;
     }
 
+    public  void setStart(String start){this.start =start ;}
+    public String getStart(){return start;}
+
+    public  void setEnd(String end){this.end =end; }
+    public  String getEnd(){return end;}
+
+    public  void setTime(int time){this.time =time; }
+    public  int getTime(){return time;}
+
+    public void setSelfdesigned(String selfdesigned){this.selfdesigned =selfdesigned; }
+    public String  getSelfdesigned(){return  selfdesigned;}
+
     public void setOne(int one) {
         this.one = one;
     }
@@ -49,11 +66,11 @@ public class CommodityForm {
         return one;
     }
 
-    public void setTwo(float two ) {
+    public void setTwo(double two ) {
         this.two =two;
     }
 
-    public float getTwo() {
+    public double getTwo() {
         return two;
     }
 
@@ -138,92 +155,92 @@ public class CommodityForm {
         return twelve;
     }
 
-    public void setThirteen(float thirteen ) {
+    public void setThirteen(double thirteen ) {
         this.thirteen=thirteen;
     }
 
-    public float getThirteen() {
+    public double getThirteen() {
         return thirteen;
     }
 
-    public void setFourteen(float fourteen ) {
+    public void setFourteen( double fourteen ) {
         this.fourteen=fourteen;
     }
 
-    public float getFourteen() {
+    public  double getFourteen() {
         return fourteen;
     }
 
-    public void setFifteen(float fifteen  ) {
+    public void setFifteen( double fifteen  ) {
         this.fifteen=fifteen;
     }
 
-    public float getFifteen() {
+    public  double getFifteen() {
         return fifteen;
     }
 
-    public void setSixteen(float sixteen ) {
+    public void setSixteen( double sixteen ) {
         this.sixteen=sixteen;
     }
 
-    public float getSixteen() {
+    public  double getSixteen() {
         return sixteen;
     }
 
-    public void setSeventeen(float seventeen ) {
+    public void setSeventeen( double seventeen ) {
         this.seventeen=seventeen;
     }
 
-    public float getSeventeen() {
+    public  double getSeventeen() {
         return seventeen;
     }
 
-    public void setEighteen(float eighteen ) {
+    public void setEighteen( double eighteen ) {
         this.eighteen=eighteen;
     }
 
-    public float getEighteen() {
+    public  double getEighteen() {
         return eighteen;
     }
 
-    public void setNineteen(float nineteen ) {
+    public void setNineteen( double nineteen ) {
         this.nineteen=nineteen;
     }
 
-    public float getNineteen() {
+    public  double getNineteen() {
         return nineteen;
     }
 
 
-    public void setTwenty(float twenty ) {
+    public void setTwenty( double twenty ) {
         this.twenty=twenty;
     }
 
-    public float getTwenty() {
+    public  double getTwenty() {
         return twenty ;
     }
 
-    public void setTwentyone(float twentyone  ) {
+    public void setTwentyone( double twentyone  ) {
         this.twentyone=twentyone;
     }
 
-    public float getTwentyone() {
+    public  double getTwentyone() {
         return twentyone;
     }
 
-    public void setTwentytwo(float twentytwo ) {
+    public void setTwentytwo( double twentytwo ) {
         this.twentytwo=twentytwo;
     }
 
-    public float getTwentytwo() {
+    public  double getTwentytwo() {
         return twentytwo;
     }
 
-    public void setTwentythree(float twentythree ) {
+    public void setTwentythree( double twentythree ) {
         this.twentythree=twentythree;
     }
 
-    public float getTwentythree() {
+    public  double getTwentythree() {
         return twentythree;
     }
 
@@ -267,13 +284,12 @@ public class CommodityForm {
         return twentyeight;
     }
 
-    public void setTwentynine(int twentynine  ) {
-        this.twentynine=twentynine;
-    }
+    public  void setTwentynine_province(String twentynine_province){this.twentynine_province =twentynine_province ;}
+    public String getTwentynine_province(){return  twentynine_province;}
 
-    public int getTwentynine() {
-        return twentynine;
-    }
+    public  void setTwentynine_city(String twentynine_city){this.twentynine_city =twentynine_city; }
+    public String getTwentynine_city(){return  twentynine_city;}
+
     public void setThirty(int thirty ) {
         this.thirty=thirty;
     }

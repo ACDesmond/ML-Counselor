@@ -13,19 +13,11 @@ public class questionnaireServiceImpl {
     private DataMapper dataMapper;
 
     public ResponseVO insertData(CommodityForm commodity){
-        int userId=commodity.getUserId();
-        CommodityForm commodityForm=new CommodityForm();
-        commodityForm=dataMapper.getQuestionnaireData(userId);
         try {
-            if(commodityForm==null) {
-                dataMapper.insertQuestionnaireData(commodity);
-                return ResponseVO.buildSuccess();
-            }
-            else {
-                dataMapper.deleteQuestionnaireData(userId);
-                dataMapper.insertQuestionnaireData(commodity);
-                return ResponseVO.buildSuccess();
-            }
+            int userId=commodity.getUserId();
+            dataMapper.deleteQuestionnaireData(userId);
+            dataMapper.insertQuestionnaireData(commodity);
+            return ResponseVO.buildSuccess();
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");
