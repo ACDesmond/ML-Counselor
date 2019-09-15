@@ -22,10 +22,12 @@ public class AccountController {
 
     @Autowired
     AccountService accountService;
+
     @PostMapping("/register")
     public ResponseVO registerAccount(@RequestBody UserForm userForm){
         return accountService.registerAccount(userForm);
     }
+
     @PostMapping("/login")
     public ResponseVO login(@RequestBody UserForm userForm, HttpSession session){
         UserVO user = accountService.login(userForm);
@@ -59,13 +61,11 @@ public class AccountController {
         String code=verfCodeInput.getCode();
         return accountService.compareCode(email,code);
     }
+
     @PostMapping("/updateUser")
     public ResponseVO updateUserInfo(@RequestBody UserForm updateUserForm){
         return accountService.updateUserInfo(updateUserForm);
     }
-
-
-
 
     @RequestMapping(value = "/staff/add", method = RequestMethod.POST)
     public ResponseVO addStaff(@RequestBody UserForm staffForm){

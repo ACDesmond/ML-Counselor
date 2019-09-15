@@ -16,8 +16,8 @@ public class SchemeServiceImpl implements SchemeService {
     public ResponseVO acquireScheme(int userID) {
         try {
             SchemeVO schemeVO=new SchemeVO();
-            ArrayList<String> stock=executePY("D:\\花旗杯\\mlc\\src\\main\\resources\\pythonFile\\stock.py",-1);
-            ArrayList<String> unDealedComsumption=executePY("D:\\花旗杯\\mlc\\src\\main\\resources\\pythonFile\\algo\\classifyUser.py",userID);
+            ArrayList<String> stock=executePY("src\\main\\resources\\pythonFile\\stock.py",-1);
+            ArrayList<String> unDealedComsumption=executePY("src\\main\\resources\\pythonFile\\algo\\classifyUser.py",userID);
             String[] stringComsumption_ration=unDealedComsumption.get(0).split(" ");
             ArrayList<Double> Comsumption_ration=new ArrayList<>();
             for(int i=0;i<stringComsumption_ration.length;i++){

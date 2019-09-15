@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-public class questionnaireController {
+public class QuestionnaireController {
     @Autowired
     QuestionnaireService questionnaireService;
 

@@ -10,7 +10,7 @@ from sklearn.ensemble import GradientBoostingRegressor
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
+import os
 
 def label_by_quantile(r,quantiles=(0.2,0.4,0.6,0.8)):
     '''五层划分'''
@@ -33,15 +33,20 @@ def return_rate(temp,day=1):
 
 
 #--------------读取数据，并预处理-------------------------
-close=pd.read_pickle(r"D:\花旗杯\mlc\src\main\resources\stock_records\close_2018.pkl")
+module_path = os.path.dirname(__file__)
+closeDir=module_path+'/stock_records/close_2018.pkl'
+close=pd.read_pickle(closeDir)
 close.dropna(how='all',axis=1,inplace=True)
-high=pd.read_pickle(r"D:\花旗杯\mlc\src\main\resources\stock_records\high_2018.pkl")
-high.dropna(how='all',axis=1,inplace=True)
-low=pd.read_pickle(r"D:\花旗杯\mlc\src\main\resources\stock_records\low_2018.pkl")
+highDir=module_path+'/stock_records/high_2018.pkl'
+high=pd.read_pickle(highDir)
+lowDir=module_path+'/stock_records/low_2018.pkl'
+low=pd.read_pickle(lowDir)
 low.dropna(how='all',axis=1,inplace=True)
-volume=pd.read_pickle(r"D:\花旗杯\mlc\src\main\resources\stock_records\volume_2018.pkl")
+volumeDir=module_path+'/stock_records/volume_2018.pkl'
+volume=pd.read_pickle(volumeDir)
 volume.dropna(how='all',axis=1,inplace=True)
-turn=pd.read_pickle(r"D:\花旗杯\mlc\src\main\resources\stock_records\turn_2018.pkl")
+turnDir=module_path+'/stock_records/turn_2018.pkl'
+turn=pd.read_pickle(turnDir)
 turn.dropna(how='all',axis=1,inplace=True)
 
 
