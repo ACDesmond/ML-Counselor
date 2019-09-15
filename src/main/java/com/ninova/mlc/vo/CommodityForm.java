@@ -264,7 +264,7 @@ public class CommodityForm {
         this.twentysix=twentysix;
     }
 
-    public int getTwentysix(int twentysix) {
+    public int getTwentysix() {
         return twentysix;
     }
 

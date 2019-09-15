@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+
 @RestController("/trace")
 public class TraceController {
     @Autowired
@@ -41,8 +43,8 @@ public class TraceController {
     }
 
     @PostMapping("/addPurchase")
-    public ResponseVO addPurchase(@RequestParam PurchaseForm purchaseForm){
-        return traceService.addPurchase(purchaseForm);
+    public ResponseVO addPurchase(@RequestParam int userId, @RequestParam String code, @RequestParam int number, @RequestParam Timestamp startTime){
+        return traceService.addPurchase(userId,code,number,startTime);
     }
 
     //获取message
