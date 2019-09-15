@@ -54,8 +54,8 @@ public class SchemeServiceImpl implements SchemeService {
             String str="";
             ArrayList<String> output=new ArrayList<>();
             while((str=bin.readLine())!=null) {
-                process.waitFor();
                 output.add(str);
+
             }
             return output;
         }catch (Exception ex){
