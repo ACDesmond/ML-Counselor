@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @RestController()
 public class TraceController {
@@ -40,9 +41,9 @@ public class TraceController {
         return traceService.getMonthHistory(userId);
     }
 
-    @PostMapping("/addPurchase")
-    public ResponseVO addPurchase(@RequestParam int userId, @RequestParam String code, @RequestParam int number, @RequestParam Timestamp startTime){
-        return traceService.addPurchase(userId,code,number,startTime);
+    @GetMapping("/addPurchase/{userId}/{code}/{number}")
+    public ResponseVO addPurchase(@PathVariable int userId, @PathVariable String code, @PathVariable int number){
+        return traceService.addPurchase(userId,code,number, new Timestamp(new Date().getTime()));
     }
 
     //获取message
