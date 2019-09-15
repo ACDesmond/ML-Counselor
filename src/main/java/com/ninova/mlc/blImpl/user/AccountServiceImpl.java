@@ -29,6 +29,7 @@ public class AccountServiceImpl implements AccountService {
         try {
             accountMapper.createNewAccount(userForm.getUsername(), userForm.getPassword(),0,userForm.getEmailAdd());
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseVO.buildFailure(ACCOUNT_EXIST);
         }
         return ResponseVO.buildSuccess();

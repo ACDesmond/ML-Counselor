@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class questionnaireController {
     @Autowired
     QuestionnaireService questionnaireService;
-    @PostMapping("/addQustionNaire")
+
+    @PostMapping("/addQuestionNaire")
     public ResponseVO addQuestionnaire(CommodityForm commodityForm){
         return questionnaireService.insertData(commodityForm);
     }
