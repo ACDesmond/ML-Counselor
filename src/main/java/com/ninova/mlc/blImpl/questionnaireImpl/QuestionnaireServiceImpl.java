@@ -1,15 +1,15 @@
-package com.ninova.mlc.blImpl.questionnaire;
+package com.ninova.mlc.blImpl.questionnaireImpl;
 
 import com.ninova.mlc.bl.questionnaire.QuestionnaireService;
 import com.ninova.mlc.vo.ResponseVO;
 import com.ninova.mlc.vo.CommodityForm;
 import com.ninova.mlc.data.Data.DataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class questionnaireServiceImpl implements QuestionnaireService {
+public class QuestionnaireServiceImpl implements QuestionnaireService {
+
     @Autowired
     private DataMapper dataMapper;
 
