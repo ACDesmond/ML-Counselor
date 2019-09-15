@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 -- MySQL dump 10.13  Distrib 8.0.17, for macos10.14 (x86_64)
 --
 -- Host: localhost    Database: mlc
 -- ------------------------------------------------------
 -- Server version	8.0.15
+=======
+-- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+--
+-- Host: localhost    Database: mlc
+-- ------------------------------------------------------
+-- Server version	8.0.17
+>>>>>>> e03d9c188874aef1abb8265ea3e3b6845376c861
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -62,7 +70,11 @@ CREATE TABLE `info` (
   `thirty` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_Id` (`userId`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8;
+>>>>>>> e03d9c188874aef1abb8265ea3e3b6845376c861
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +108,11 @@ CREATE TABLE `purchase` (
   PRIMARY KEY (`id`),
   KEY `fk_userId` (`userId`),
   CONSTRAINT `fk_userId` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+>>>>>>> e03d9c188874aef1abb8265ea3e3b6845376c861
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,10 +135,17 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
+<<<<<<< HEAD
   `e_mail` varchar(50) NOT NULL,
   `tag` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+=======
+  `Email` varchar(50) NOT NULL,
+  `tag` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+>>>>>>> e03d9c188874aef1abb8265ea3e3b6845376c861
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,6 +156,32 @@ LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+<<<<<<< HEAD
+=======
+
+--
+-- Table structure for table `verf_code`
+--
+
+DROP TABLE IF EXISTS `verf_code`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `verf_code` (
+  `email` varchar(50) DEFAULT NULL,
+  `verf_code` varchar(50) DEFAULT NULL,
+  `time` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `verf_code`
+--
+
+LOCK TABLES `verf_code` WRITE;
+/*!40000 ALTER TABLE `verf_code` DISABLE KEYS */;
+/*!40000 ALTER TABLE `verf_code` ENABLE KEYS */;
+UNLOCK TABLES;
+>>>>>>> e03d9c188874aef1abb8265ea3e3b6845376c861
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -143,4 +192,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2019-09-03 19:19:50
+=======
+-- Dump completed on 2019-09-14 15:31:03
+>>>>>>> e03d9c188874aef1abb8265ea3e3b6845376c861

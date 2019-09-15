@@ -1,5 +1,6 @@
 package com.ninova.mlc.data.user;
 
+import com.ninova.mlc.po.PurchaseRecord;
 import com.ninova.mlc.po.User;
 import com.ninova.mlc.vo.UserForm;
 import org.apache.ibatis.annotations.Mapper;

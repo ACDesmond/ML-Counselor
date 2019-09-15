@@ -6,52 +6,32 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TraceService {
     /**
-     * 股票每日收益
+     * 获得当前周期所有产品收益追踪
+     * @param userId
+     * @return
+     */
+    public ResponseVO getAll(int userId);
+
+    /**
+     * 获得某一产品的收益追踪
      * @param userId
      * @param code
      * @return
      */
-    public ResponseVO getStockDailyBenefit(int userId,String code);
+    public ResponseVO getSpecific(int userId,String code);
 
     /**
-     * 股票总收益
+     * 获得某一产品的历史收益信息
+     * @param userId
+     * @param code
      * @return
      */
-    public ResponseVO getStockTotalBenefit(int userId,String code);
+    public ResponseVO getHistory(int userId,String code);
 
     /**
-     * 基金每日收益
+     * 获得某一用户所有产品的最近七日收益
+     * @param userId
      * @return
      */
-    public ResponseVO getfundDailyBenefit(int userId,String code);
-
-    /**
-     * 基金总收益
-     * @return
-     */
-    public ResponseVO getfundTotalBenefit(int userId,String code);
-
-    /**
-     * 债券每日收益
-     * @return
-     */
-    public ResponseVO getbondDailyBenefit(int userId,String code);
-
-    /**
-     * 债券总收益
-     * @return
-     */
-    public ResponseVO getbondTotalBenefit(int userId,String code);
-
-    /**
-     * 公司理财产品每日收益
-     * @return
-     */
-    public ResponseVO getCFPDailyBenefit(int userId,String code);
-
-    /**
-     * 公司理财产品总收益
-     * @return
-     */
-    public ResponseVO getCFPTotalBenefit(int userId,String code);
+    public ResponseVO getMonthHistory(int userId);
 }

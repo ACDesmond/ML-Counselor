@@ -30,6 +30,10 @@ public class PurchaseRecord {
      */
     private Timestamp startTime;
     /**
+     * 每日收益记录
+     */
+    private String history;
+    /**
      *  0为当前周期购买记录 1为以往周期购买记录
      */
     private int state;
@@ -104,5 +108,13 @@ public class PurchaseRecord {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public void setHistory(String history) {
+        this.history = history;
+    }
+
+    public String getHistory() {
+        return history;
     }
 }
