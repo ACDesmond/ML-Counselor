@@ -1,7 +1,7 @@
 package com.ninova.mlc.blImpl.trace;
 
 import com.ninova.mlc.bl.trace.TraceService;
-import com.ninova.mlc.data.PurchaseMapper;
+import com.ninova.mlc.data.Purchase.PurchaseMapper;
 import com.ninova.mlc.po.PurchaseRecord;
 import com.ninova.mlc.vo.*;
 import net.sf.json.JSONArray;
@@ -44,20 +44,20 @@ public class TraceServiceImpl implements TraceService {
                 String dailyEarnings=null;
                 String allEarings=null;
                 if (p.getState() == 0 && p.getType() == 1) {
-                    float nowPrice = (float) getRequest2(code).get("netWorth");
-                    float dayGrowth = (float) getRequest2(code).get("dayGrowth")/100;
+                    double nowPrice = (double) getRequest2(code).get("netWorth");
+                    double dayGrowth = (double) getRequest2(code).get("dayGrowth")/100;
                     dailyEarnings = nowPrice*(dayGrowth/(1+dayGrowth))+"";
                     allEarings = (float) (nowPrice * number - principal)+"";
-                } else if (p.getState() == 0 && p.getType() == 2) {
-                    float nowPrice = (float) getRequest1(code).get("price");
-                    float yesPrice = (float) getRequest1(code).get("close");
+                } else if (p.getState() == 0 && p.getType() == 3) {
+                    double nowPrice = (double) getRequest1(code).get("price");
+                    double yesPrice = (double) getRequest1(code).get("close");
                     dailyEarnings = (nowPrice - yesPrice) * number+"";
                     allEarings = (float) (nowPrice * number - principal)+"";
-                }else if(p.getState()==0 && p.getType()==3){
-                    float nowPrice=(float)getRequest3(code).get("newnet");
-                    float dayGrowth = (float) getRequest3(code).get("dayincrease");
+                }else if(p.getState()==0 && p.getType()==2){
+                    double nowPrice=(double)getRequest3(code).get("newnet");
+                    double dayGrowth = (double) getRequest3(code).get("dayincrease");
                     dailyEarnings = nowPrice*(dayGrowth/(1+dayGrowth))+"";
-                    allEarings = (float) (nowPrice * number - principal)+"";
+                    allEarings = (double) (nowPrice * number - principal)+"";
                 }
                 r = code + "," + dailyEarnings + "," + allEarings;
                 earningsReturnAll.add(r);
@@ -131,9 +131,10 @@ public class TraceServiceImpl implements TraceService {
                 List<Double> list=new ArrayList<>();
                 for (PurchaseRecord item:presentUser){
                     String stringHistory=item.getHistory();
-                    if (stringHistory.length()> (2 * (30-i)) ){
-                        int index=stringHistory.length()-((29-i)*2+1);
-                        list.add(Double.parseDouble(stringHistory.substring(index,index+1)));
+                    String[] historyArr=stringHistory.split(",");
+                    if (historyArr.length> (30-i)){
+                        int index=historyArr.length-(30-i);
+                        list.add(Double.parseDouble(historyArr[index]));
                     }
                 }
                 dailyBenefitVO.setBenefits(list);
@@ -149,8 +150,17 @@ public class TraceServiceImpl implements TraceService {
     }
 
     @Override
-    public ResponseVO addPurchase(PurchaseForm purchaseForm){
+    public ResponseVO addPurchase(int userId,String code,int number,Timestamp startTime){
         try {
+            PurchaseForm purchaseForm=new PurchaseForm();
+            JSONObject jsonObject=getRequest1(code);
+            purchaseForm.setCode(code);
+            purchaseForm.setName((String)jsonObject.get("name"));
+            purchaseForm.setNumber(number);
+            purchaseForm.setType(3);
+            purchaseForm.setUserId(userId);
+            purchaseForm.setStartTime(startTime);
+            purchaseForm.setPrincipal(number*((double)jsonObject.get("price")));
             purchaseMapper.insertRecord(purchaseForm);
             return ResponseVO.buildSuccess();
         }catch (Exception e){
@@ -234,7 +244,6 @@ public class TraceServiceImpl implements TraceService {
         String string = httpRequest(requestUrl,params);
         //处理返回的JSON数据并返回
         JSONObject object = JSONObject.fromObject(string);
-        System.out.println(object);
         return object.getJSONObject("data");
     }
 

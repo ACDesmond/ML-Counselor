@@ -3,10 +3,7 @@
 <mapper namespace="com.ninova.mlc.data.Data.DataMapper">
     <insert id="insertQuestionnaireData" parameterType="com.ninova.mlc.vo.CommodityForm"
             useGeneratedKeys="true" keyProperty="id">
-        insert into info(userId,start,end,time,self_designed,one,two,three,four,five,six,seven,
-        eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen,
-        eighteen,nineteen,twenty,twentyone,twentytwo,twentythree,twentyfour,twentyfive,
-        twentysix,twentyseven,twentyeight,twentynine_province,twentynine_city,thirty)
+        insert into info(userId,start,end,time,self_designed,one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen,eighteen,nineteen,twenty,twentyone,twentytwo,twentythree,twentyfour,twentyfive,twentysix,twentyseven,twentyeight,twentynine_province,twentynine_city,thirty)
         values(#{userId},#{start},#{end},#{time},#{selfdesigned},#{one},#{two},#{three},#{four},#{five},#{six},#{seven},
         #{eight},#{nine},#{ten},#{eleven},#{twelve},#{thirteen},#{fourteen},#{fifteen},#{sixteen},#{seventeen},
         #{eighteen},#{nineteen},#{twenty},#{twentyone},#{twentytwo},#{twentythree},#{twentyfour},#{twentyfive},

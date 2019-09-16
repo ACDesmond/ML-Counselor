@@ -1,5 +1,5 @@
 package com.ninova.mlc.data;
-
+import com.ninova.mlc.data.Purchase.PurchaseMapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

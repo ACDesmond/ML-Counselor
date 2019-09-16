@@ -1,7 +1,7 @@
 package com.ninova.mlc.blImpl.trace;
 
 import com.ninova.mlc.bl.trace.TraceService;
-import com.ninova.mlc.data.PurchaseMapper;
+import com.ninova.mlc.data.Purchase.PurchaseMapper;
 import com.ninova.mlc.po.PurchaseRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

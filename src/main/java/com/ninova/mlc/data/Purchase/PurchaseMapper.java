@@ -1,4 +1,4 @@
-package com.ninova.mlc.data;
+package com.ninova.mlc.data.Purchase;
 
 import com.ninova.mlc.po.PurchaseRecord;
 import com.ninova.mlc.vo.PurchaseForm;

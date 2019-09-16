@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ninova.mlc.data.PurchaseMapper">
+<mapper namespace="com.ninova.mlc.data.Purchase.PurchaseMapper">
 
     <insert id="insertRecord" parameterType="com.ninova.mlc.vo.PurchaseForm" useGeneratedKeys="true" keyProperty="id">
         insert into purchase(userId,name,code,principal,number,type,startTime,history,state)
-        values(#{userId},#{name},#{code},#{principal},#{number},#{type},#{type},#{startTime},'0',0)
+        values(#{userId},#{name},#{code},#{principal},#{number},#{type},#{startTime},'0',0)
     </insert>
 
     <select id="getAll" resultMap="PurchaseRecord">

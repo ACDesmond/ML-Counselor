@@ -4,6 +4,8 @@ import com.ninova.mlc.vo.PurchaseForm;
 import com.ninova.mlc.vo.ResponseVO;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+
 @Repository
 public interface TraceService {
     /**
@@ -37,11 +39,14 @@ public interface TraceService {
     public ResponseVO getMonthHistory(int userId);
 
     /**
-     * 增加一条购买记录
-     * @param purchaseForm
+     * 增加记录
+     * @param userId
+     * @param code
+     * @param number
+     * @param startTime
      * @return
      */
-    public ResponseVO addPurchase(PurchaseForm purchaseForm);
+    public ResponseVO addPurchase(int userId, String code, int number, Timestamp startTime);
 
     /**
      * 获得累积收益
