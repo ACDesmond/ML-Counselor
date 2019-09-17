@@ -30,7 +30,7 @@ def getUser():
     parameterList = sys.argv
     targetUser = int(parameterList[1])
     # 连接数据库
-    con = pymysql.connect(host="127.0.0.1", user="root", password="ZIyou0115", db="mlc")
+    con = pymysql.connect(host="127.0.0.1", user="root", password="ninova", db="mlc")
     raw_data = pd.read_sql("select * from info ", con)
     data=preprocess(raw_data,targetUser)
     return data

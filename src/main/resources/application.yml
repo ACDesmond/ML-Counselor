@@ -2,7 +2,7 @@ server:
   port:8080
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/mlc?setUnicode=true&characterEncoding=utf8&serverTimezone=CTT
+    url: jdbc:mysql://localhost:3306/mlc?setUnicode=true&characterEncoding=utf8&serverTimezone=CTT&autoReconnect=true&useSSL=false
     username: root
     password: ninova
     driver-class-name: com.mysql.cj.jdbc.Driver
