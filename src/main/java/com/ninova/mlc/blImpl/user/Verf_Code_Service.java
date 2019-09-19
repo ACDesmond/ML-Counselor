@@ -26,6 +26,9 @@ public class Verf_Code_Service {
             HtmlEmail email = new HtmlEmail();
             email.setHostName("smtp.qq.com");
             email.setCharset("UTF-8");
+            email.setSSLOnConnect(true);
+            email.setSslSmtpPort("465");
+            email.setSmtpPort(465);
             //收件地址
             email.addTo(emailAdd);
             //邮件的发送人和地址

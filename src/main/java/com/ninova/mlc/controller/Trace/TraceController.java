@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
+
 @RestController()
+@CrossOrigin("http://localhost:8080")
 public class TraceController {
     @Autowired
     TraceService traceService;

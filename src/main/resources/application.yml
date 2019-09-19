@@ -13,7 +13,17 @@ spring:
     cache: false
   jackson:
     time-zone: GMT+8
+  mail:
+    properties:
+      mail:
+        port: 465
+        smtp:
+          socketFactory:
+            port: 465
+          ssl:
+            enable: true
+            trust: smtp.qq.com
+
 
 mybatis:
   mapper-locations: classpath:dataImpl/*/*Mapper.xml
-
